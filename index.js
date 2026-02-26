@@ -316,6 +316,24 @@ async function handleModalSubmit(interaction) {
 client.on("messageCreate", async message => {
   if (message.author.bot) return;
   
+    // ===== ẢNH NÓNG KEYWORD =====
+  if (message.content.toLowerCase().includes("ảnh nóng")) {
+    const embed = new EmbedBuilder()
+      .setColor("#ff3366")
+      .setTitle("🔥 ẢNH NÓNG HOT NHẤT TUẦN 🔥")
+      .setDescription(
+        "🚨 Cảnh báo: Nội dung cực kỳ nóng bỏng!\n\n" +
+        "👉 Bộ ảnh này đã được hội FA kiểm duyệt gắt gao.\n" +
+        "💘 Xem xong đảm bảo tim đập nhanh hơn TPS server.\n\n" +
+        "📸 Tuyệt phẩm ngay bên dưới 👇"
+      )
+      .setImage(process.env.ANH_NONG_IMAGE)
+      .setFooter({ text: "Nguồn: Hội Những Người Thích Drama" })
+      .setTimestamp();
+
+    return message.channel.send({ embeds: [embed] });
+  }
+  
   if (message.content.startsWith(PREFIX)) {
     const args = message.content.slice(PREFIX.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
