@@ -949,7 +949,6 @@ Bot : Không
         components: [row]
       });
     }
-  }
 });
 
 /* ================= SLASH COMMAND ================= */
