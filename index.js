@@ -893,7 +893,8 @@ Bot : Không
 
     await message.channel.send({ embeds: [embed] });
   }
-
+ });
+}
       
     /* ===== !gui (Prefix) - KIỂM TRA ROLE ===== */
     if (cmd === "gui") {
@@ -949,6 +950,7 @@ Bot : Không
         components: [row]
       });
     }
+  }
 });
 
 /* ================= SLASH COMMAND ================= */
