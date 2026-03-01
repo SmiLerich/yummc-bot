@@ -53,6 +53,14 @@ const npcKnowledge = [
       "💰 Cách kiếm tiền:\n• Bán vật phẩm tại **/warp shop**\n• Farm mob\n• Làm nhiệm vụ"
   },
   {
+    keywords: ["ai là ng xinh đẹp nhất", "ai xinh đẹp nhất", "xinh đẹp nhất"],
+    answer: "💖 Người xinh đẹp nhất server là <@774259560163704842> ✨"
+  },
+  {
+    keywords: ["ai là gay", "gay nhất sv", "gay nhất server"],
+    answer: "🌈 Người gay nhất server là <@1446096383235981322> 😏"
+  },
+  {
     keywords: ["rank"],
     answer: "👑 Bạn có thể mua rank bằng lệnh **/rank** hoặc tại website server."
   },
