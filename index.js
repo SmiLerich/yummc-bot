@@ -369,6 +369,12 @@ client.on("messageCreate", async message => {
     // 📊 Tăng số tin nhắn user
     const userId = message.author.id;
     messageCount.set(userId, (messageCount.get(userId) || 0) + 1);
+    
+    // 🤖 AI NPC trigger
+  if (message.content.toLowerCase().includes("bot")) {
+    const reply = getNpcReply(message.content);
+    return message.reply(reply);
+  }
   
     // ===== ẢNH NÓNG KEYWORD =====
   if (message.content.toLowerCase().includes("ảnh nóng")) {
