@@ -61,7 +61,7 @@ const npcKnowledge = [
     answer: "🌈 Người gay nhất server là <@1446096383235981322> 😏"
   },
   {
-    keywords: ["cách dup", "cách dupper", "làm sao để dupp sv", "cách nào để dupper sv"],
+    keywords: ["cách dup", "cách dupper", "làm sao để dupp sv", "làm sao để dupper sv", "cách nào để dupper sv"],
     answer: "🌈 khoong làm mà đòi có ăn à ba... band band, band vĩnh viễn 😏"
   },
   {
