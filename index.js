@@ -19,9 +19,10 @@ const {
 } = require("discord.js");
 const { status } = require("minecraft-server-util");
 
-const OpenAI = require("openai");
-const ai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+const Groq = require("groq-sdk");
+
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 /* ================= CLIENT ================= */
