@@ -19,11 +19,6 @@ const {
 } = require("discord.js");
 const { status } = require("minecraft-server-util");
 
-const Groq = require("groq-sdk");
-
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
 
 /* ================= CLIENT ================= */
 const client = new Client({
@@ -39,29 +34,6 @@ const client = new Client({
 
 const PREFIX = "";
 let lastStatus = null;
-
-async function getAIReply(userMessage) {
-  try {
-    const chat = await groq.chat.completions.create({
-      model: "llama3-70b-8192",
-      messages: [
-        {
-          role: "system",
-          content: "Bạn là NPC AI trong server Minecraft, nói chuyện vui vẻ, thân thiện với người chơi.",
-        },
-        {
-          role: "user",
-          content: userMessage,
-        },
-      ],
-    });
-
-    return chat.choices[0].message.content;
-  } catch (err) {
-    console.error("Groq error:", err);
-    return "NPC đang bận, thử lại sau 😵";
-  }
-}
 
 // 📊 Đếm số tin nhắn mỗi user trong server
 const messageCount = new Map();
@@ -374,20 +346,6 @@ client.on("messageCreate", async message => {
 
     return message.channel.send({ embeds: [embed] });
   }
-  
-    // 🤖 AI NPC chat khi được gọi tên
-if (
-  message.content.toLowerCase().includes("bot ơi") ||
-  message.content.toLowerCase().includes("npc ơi") ||
-  message.mentions.has(client.user)
-) {
-  const reply = await getAIReply(
-    message.author.username,
-    message.content
-  );
-
-  return message.reply(reply);
-}
   
   if (message.content.startsWith(PREFIX)) {
     const args = message.content.slice(PREFIX.length).trim().split(/ +/);
