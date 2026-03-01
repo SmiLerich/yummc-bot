@@ -34,6 +34,9 @@ const client = new Client({
 const PREFIX = "";
 let lastStatus = null;
 
+// 📊 Đếm số tin nhắn mỗi user trong server
+const messageCount = new Map();
+
 // 🔐 Cấu hình role permissions
 const ALLOWED_ROLE_IDS = process.env.ALLOWED_ROLE_IDS 
   ? process.env.ALLOWED_ROLE_IDS.split(',') 
@@ -316,6 +319,10 @@ async function handleModalSubmit(interaction) {
 client.on("messageCreate", async message => {
   if (message.author.bot) return;
   
+    // 📊 Tăng số tin nhắn user
+    const userId = message.author.id;
+    messageCount.set(userId, (messageCount.get(userId) || 0) + 1);
+  
     // ===== ẢNH NÓNG KEYWORD =====
   if (message.content.toLowerCase().includes("ảnh nóng")) {
     const embed = new EmbedBuilder()
@@ -341,7 +348,8 @@ client.on("messageCreate", async message => {
     /* ===== !getid ===== */
     if (cmd === "getid") {
       const user = message.mentions.users.first() || message.author;
-
+      const msgCount = messageCount.get(user.id) || 0;
+      
       const embed = new EmbedBuilder()
         .setColor("#ff5fa2")
         .setTitle("🆔 THÔNG TIN ID")
@@ -350,6 +358,7 @@ client.on("messageCreate", async message => {
           { name: "👤 User", value: `<@${user.id}>`, inline: true },
           { name: "🏷️ Tag", value: user.username, inline: true },
           { name: "🆔 ID", value: user.id },
+          { name: "💬 Tin nhắn", value: `${msgCount}`, inline: true }, // 👈 THÊM
           { name: "🤖 Bot", value: user.bot ? "Có" : "Không" },
           {
             name: "📆 Tạo",
