@@ -37,6 +37,53 @@ let lastStatus = null;
 // 📊 Đếm số tin nhắn mỗi user trong server
 const messageCount = new Map();
 
+// 🤖 KIẾN THỨC AI NPC SERVER //
+const npcKnowledge = [
+  {
+    keywords: ["farm", "nông", "trồng"],
+    answer: "🌾 Bạn có thể farm tại **/warp farm** hoặc khu nông trại cộng đồng."
+  },
+  {
+    keywords: ["mine", "đào", "quặng"],
+    answer: "⛏️ Bạn có thể đào khoáng sản tại **/warp mine**."
+  },
+  {
+    keywords: ["tiền", "money", "kiếm tiền"],
+    answer:
+      "💰 Cách kiếm tiền:\n• Bán vật phẩm tại **/warp shop**\n• Farm mob\n• Làm nhiệm vụ"
+  },
+  {
+    keywords: ["rank"],
+    answer: "👑 Bạn có thể mua rank bằng lệnh **/rank** hoặc tại website server."
+  },
+  {
+    keywords: ["ip", "server"],
+    answer: "🌐 IP server: **yummc.online**\nPhiên bản: 1.18 → 1.21"
+  },
+  {
+    keywords: ["warp"],
+    answer:
+      "🌀 Warp phổ biến:\n• /warp farm\n• /warp mine\n• /warp shop\n• /warp spawn"
+  },
+  {
+    keywords: ["help", "giúp"],
+    answer:
+      "📖 Lệnh cơ bản:\n• /spawn\n• /warp\n• /shop\n• /ah\n• /rank"
+  }
+];
+
+function getNpcReply(content) {
+  const text = content.toLowerCase();
+
+  for (const item of npcKnowledge) {
+    if (item.keywords.some(k => text.includes(k))) {
+      return item.answer;
+    }
+  }
+
+  return "🤖 Xin lỗi, mình chưa hiểu câu hỏi.\nBạn thử hỏi về: farm, mine, tiền, rank, warp...";
+}
+
 // 🔐 Cấu hình role permissions
 const ALLOWED_ROLE_IDS = process.env.ALLOWED_ROLE_IDS 
   ? process.env.ALLOWED_ROLE_IDS.split(',') 
