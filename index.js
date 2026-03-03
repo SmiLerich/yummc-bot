@@ -715,6 +715,7 @@ Bot : Không
           {
             name: '🟢 🌴 Thuần Sinh Tồn ',
             value: '```✅ Host lỏ, mở mấy ní chơi tạm```',
+            value: '```✅ server k luật, thích làm j làm 🐧```',
             inline: true
           },
           {
