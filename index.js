@@ -24,11 +24,11 @@ const fs = require("fs")
 let couples = {}
 
 if (fs.existsSync("./couples.json")) {
- couples = JSON.parse(fs.readFileSync("./couples.json"))
+  couples = JSON.parse(fs.readFileSync("./couples.json", "utf8"))
 }
 
 function saveCouples(){
- fs.writeFileSync("./couples.json", JSON.stringify(couples,null,2))
+  fs.writeFileSync("./couples.json", JSON.stringify(couples, null, 2))
 }
 /* ======= adn */
 
