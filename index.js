@@ -1698,6 +1698,172 @@ Bot : Không
 
 /* ================= SLASH COMMAND ================= */
 client.on("interactionCreate", async interaction => {
+  if (interaction.isModalSubmit()) {
+/* ====== vote1 ===== */
+if (interaction.customId === "vote_create") {
+
+const title = interaction.fields.getTextInputValue("vote_title")
+const reward = interaction.fields.getTextInputValue("vote_reward")
+const minutes = Number(interaction.fields.getTextInputValue("vote_time"))
+
+if(!minutes || minutes <= 0){
+return interaction.reply({
+content:"❌ Thời gian không hợp lệ",
+ephemeral:true
+})
+}
+
+let up = 0
+let down = 0
+const voters = new Set()
+
+const endTime = Date.now() + minutes * 60000
+
+function buildBar(){
+
+const total = up + down
+let percent = total === 0 ? 50 : Math.round((up / total) * 100)
+
+let bar = "🟩".repeat(Math.floor(percent/10)) +
+"⬜".repeat(10-Math.floor(percent/10))
+
+return {percent,bar}
+
+}
+
+function timeLeft(){
+let left = Math.max(0,Math.floor((endTime - Date.now())/1000))
+return `${left}s`
+}
+
+function buildEmbed(){
+
+const {percent,bar} = buildBar()
+
+return new EmbedBuilder()
+
+.setTitle(`🗳️ ${title}`)
+
+.setDescription(
+`🎁 Phần thưởng: ${reward}
+
+👍 Đồng ý : ${up}
+👎 Không : ${down}
+
+📊 ${percent}%
+${bar}
+
+⏳ Kết thúc sau: ${timeLeft()}`
+)
+
+.setColor("Blue")
+
+}
+
+const row = new ActionRowBuilder().addComponents(
+
+new ButtonBuilder()
+.setCustomId("vote_yes")
+.setLabel("👍 Đồng ý")
+.setStyle(ButtonStyle.Success),
+
+new ButtonBuilder()
+.setCustomId("vote_no")
+.setLabel("👎 Không")
+.setStyle(ButtonStyle.Danger)
+
+)
+
+await interaction.reply({
+embeds:[buildEmbed()],
+components:[row]
+})
+
+const msg = await interaction.fetchReply()
+
+const collector = msg.createMessageComponentCollector({
+time: minutes * 60000
+})
+
+const countdown = setInterval(()=>{
+interaction.editReply({
+embeds:[buildEmbed()]
+}).catch(()=>{})
+},10000)
+
+collector.on("collect", async i=>{
+
+if(voters.has(i.user.id)){
+return i.reply({
+content:"❌ Bạn đã vote rồi!",
+ephemeral:true
+})
+}
+
+voters.add(i.user.id)
+
+if(i.customId === "vote_yes") up++
+if(i.customId === "vote_no") down++
+
+await i.update({
+embeds:[buildEmbed()],
+components:[row]
+})
+
+})
+
+collector.on("end", async()=>{
+
+clearInterval(countdown)
+
+const {percent,bar} = buildBar()
+
+const final = new EmbedBuilder()
+
+.setTitle("🏆 Vote kết thúc")
+
+.setDescription(
+`🗳️ ${title}
+
+🎁 Phần thưởng: ${reward}
+
+👍 Đồng ý : ${up}
+👎 Không : ${down}
+
+📊 ${percent}%
+${bar}`
+)
+
+.setColor("Gold")
+
+const disabledRow = new ActionRowBuilder().addComponents(
+
+new ButtonBuilder()
+.setCustomId("vote_yes")
+.setLabel("👍 Đồng ý")
+.setStyle(ButtonStyle.Success)
+.setDisabled(true),
+
+new ButtonBuilder()
+.setCustomId("vote_no")
+.setLabel("👎 Không")
+.setStyle(ButtonStyle.Danger)
+.setDisabled(true)
+
+)
+
+await interaction.editReply({
+embeds:[final],
+components:[disabledRow]
+})
+
+})
+
+}
+
+}
+
+
   if (interaction.isChatInputCommand()) {
     
     if (interaction.commandName === "online") {
@@ -1807,175 +1973,6 @@ const row3 = new ActionRowBuilder().addComponents(timeInput)
 modal.addComponents(row1,row2,row3)
 
 await interaction.showModal(modal)
-
-}
-
-/* ====================== SUBMIT FORM ====================== */
-
-if (interaction.isModalSubmit() && interaction.customId === "create_vote") {
-
-const title = interaction.fields.getTextInputValue("vote_title")
-const reward = interaction.fields.getTextInputValue("vote_reward")
-const time = Number(interaction.fields.getTextInputValue("vote_time"))
-
-const endTime = Date.now() + time * 60000
-
-let up = 0
-let down = 0
-const voters = new Set()
-
-function buildBar(){
-
-const total = up + down
-
-let percent = total === 0 ? 50 : Math.round((up / total) * 100)
-
-let bar =
-"🟩".repeat(Math.floor(percent/10)) +
-"⬜".repeat(10-Math.floor(percent/10))
-
-return {percent,bar}
-
-}
-
-function buildEmbed(){
-
-const {percent,bar} = buildBar()
-
-return new EmbedBuilder()
-
-.setTitle(`🗳️ ${title}`)
-
-.setDescription(
-`🎁 Phần thưởng: ${reward}
-
-⏳ Kết thúc: <t:${Math.floor(endTime/1000)}:R>
-
-👍 Đồng ý : ${up}
-👎 Không : ${down}
-
-📊 ${percent}%
-${bar}`
-)
-
-.setColor("Blue")
-
-}
-
-const row = new ActionRowBuilder().addComponents(
-
-new ButtonBuilder()
-.setCustomId("vote_yes")
-.setLabel("👍 Đồng ý")
-.setStyle(ButtonStyle.Success),
-
-new ButtonBuilder()
-.setCustomId("vote_no")
-.setLabel("👎 Không")
-.setStyle(ButtonStyle.Danger)
-
-)
-
-await interaction.reply({
-embeds:[buildEmbed()],
-components:[row]
-})
-
-const msg = await interaction.fetchReply()
-
-const collector = msg.createMessageComponentCollector({
-time: time * 60000
-})
-
-/* ====================== COUNTDOWN ====================== */
-
-const countdown = setInterval(async()=>{
-
-if(Date.now() >= endTime){
-clearInterval(countdown)
-return
-}
-
-try{
-await interaction.editReply({
-embeds:[buildEmbed()],
-components:[row]
-})
-}catch{}
-
-},10000)
-
-/* ====================== VOTE ====================== */
-
-collector.on("collect", async i=>{
-
-if(voters.has(i.user.id)){
-return i.reply({
-content:"❌ Bạn đã vote rồi!",
-ephemeral:true
-})
-}
-
-voters.add(i.user.id)
-
-if(i.customId === "vote_yes") up++
-if(i.customId === "vote_no") down++
-
-await i.update({
-embeds:[buildEmbed()],
-components:[row]
-})
-
-})
-
-/* ====================== KẾT THÚC ====================== */
-
-collector.on("end", async()=>{
-
-clearInterval(countdown)
-
-const {percent,bar} = buildBar()
-
-const disabledRow = new ActionRowBuilder().addComponents(
-
-new ButtonBuilder()
-.setCustomId("vote_yes")
-.setLabel("👍 Đồng ý")
-.setStyle(ButtonStyle.Success)
-.setDisabled(true),
-
-new ButtonBuilder()
-.setCustomId("vote_no")
-.setLabel("👎 Không")
-.setStyle(ButtonStyle.Danger)
-.setDisabled(true)
-
-)
-
-const final = new EmbedBuilder()
-
-.setTitle("🏆 Vote kết thúc")
-
-.setDescription(
-`🗳️ ${title}
-
-🎁 Phần thưởng: ${reward}
-
-👍 Đồng ý : ${up}
-👎 Không : ${down}
-
-📊 ${percent}%
-${bar}`
-)
-
-.setColor("Gold")
-
-await interaction.editReply({
-embeds:[final],
-components:[disabledRow]
-})
-
-})
 
 }
     
