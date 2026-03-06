@@ -30,7 +30,7 @@ if (fs.existsSync("./couples.json")) {
 function saveCouples(){
  fs.writeFileSync("./couples.json", JSON.stringify(couples,null,2))
 }
-/* ======= */
+/* ======= adn */
 
 const { status } = require("minecraft-server-util");
 
