@@ -349,43 +349,45 @@ client.on("messageCreate", async message => {
   
     // ===== AUTO CHAT RANDOM =====
 
-const msg = message.content.toLowerCase();
+    const msg = message.content.toLowerCase();
 
 // danh sách từ bỏ qua
-const ignore = [
-"ảnh nóng",
-"getid",
-"authme",
-"rank",
-"owner",
-"online",
-"help",
-"ping",
-"info",
-"ip",
-"code",
-"gui"
-];
+    const ignore = [
+    "ảnh nóng",
+    "getid",
+    "authme",
+    "rank",
+    "owner",
+    "online",
+    "help",
+    "ping",
+    "info",
+    "ip",
+    "code",
+    "gui"
+    ];
 
-if (!ignore.some(word => msg.includes(word))) {
+    if (!ignore.some(word => msg.includes(word))) {
 
 // random câu trả lời
-const replies = [
-"✨ Hôm nay bạn đẹp lắm!",
-"😆 Bạn nói chuyện dễ thương ghê",
-"👀 Tôi đang nghe đây",
-"🎮 Chúc bạn chơi game vui vẻ!",
-"🤖 Tôi là bot nhưng vẫn thích nói chuyện",
-"🔥 Server hôm nay đông ghê",
-"💬 Bạn cần giúp gì không?",
-"😳 Nghe cũng hợp lý đấy",
-"🚀 YUMMC mãi đỉnh!",
-"🎉 Chúc bạn một ngày tốt lành!"
-];
+    const replies = [
+    "✨ Hôm nay bạn đẹp lắm!",
+    "😆 Bạn nói chuyện dễ thương ghê",
+    "👀 Tôi đang nghe đây",
+    "🎮 Chúc bạn chơi game vui vẻ!",
+    "🤖 Tôi là bot nhưng vẫn thích nói chuyện",
+    "🔥 Server hôm nay đông ghê",
+    "💬 Bạn cần giúp gì không?",
+    "😳 Nghe cũng hợp lý đấy",
+    "🚀 YUMMC mãi đỉnh!",
+    "🎉 Chúc bạn một ngày tốt lành!"
+    ];
 
-const randomReply = replies[Math.floor(Math.random() * replies.length)];
+    const randomReply = replies[Math.floor(Math.random() * replies.length)];
 
-message.reply(randomReply);
+    message.reply(randomReply);
+    }
+}
 /* ====== abc =====*/
   
   if (message.content.startsWith(PREFIX)) {
