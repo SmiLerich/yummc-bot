@@ -556,7 +556,7 @@ if (cmd === "ship") {
 }
 
 /* ===== kết hôn ==== */
-if(command === "kethon"){
+if(cmd === "kethon"){
 
 let user = message.mentions.users.first()
 
@@ -604,7 +604,7 @@ ${message.author} ❤️ ${user}`
 }
 
 /* ====== ly hôn ==== */
-if(command === "lyhon"){
+if(cmd === "lyhon"){
 
 let data = couples[message.author.id]
 
@@ -637,7 +637,7 @@ message.channel.send(
 }
 
 /* ====== cặp đôi =====*/
-if(command === "capdoi"){
+if(cmd === "capdoi"){
 
 let data = couples[message.author.id]
 
@@ -660,7 +660,7 @@ message.channel.send(
 }
 
 /* ====== top cuoi =====*/
-if(command === "topcuoi"){
+if(cmd === "topcuoi"){
 
 let list = []
 
