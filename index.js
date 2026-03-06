@@ -481,6 +481,183 @@ if (cmd === "authme") {
 
   message.channel.send({ embeds: [authEmbed] });
 }
+
+/*==== tu tien ====*/
+if (cmd === "tutien") {
+const story = [
+
+"🌌 **Đại Lục Thiên Huyền**...",
+"Nơi cường giả vi tôn.",
+"Kẻ yếu... chỉ có thể cúi đầu sống sót.",
+
+"Trên đại lục này tồn tại vô số tông môn.",
+"Thanh Vân Tông.",
+"Huyền Kiếm Môn.",
+"Thiên Ma Điện.",
+
+"Những nơi đó... đều là thánh địa của tu sĩ.",
+
+"🏡 Nhưng tại một ngôi làng nhỏ hẻo lánh...",
+"Mọi thứ lại hoàn toàn khác.",
+
+"Có một thiếu niên tên **Lâm Phàm**.",
+
+"Từ nhỏ hắn đã bị gọi là phế vật.",
+"Không thể cảm nhận linh khí.",
+"Không thể tu luyện.",
+
+"Trong thế giới này...",
+"Điều đó gần như đồng nghĩa với việc cả đời làm phàm nhân.",
+
+"Nhưng Lâm Phàm không cam tâm.",
+
+"Mỗi ngày hắn đều lên núi.",
+"Luyện kiếm.",
+"Rèn luyện thân thể.",
+
+"Dù bị người khác chế giễu...",
+"Hắn vẫn không bỏ cuộc.",
+
+"🌙 Một đêm nọ...",
+
+"Bầu trời đột nhiên tối sầm.",
+
+"⚡ Một tia lôi đình khổng lồ xé toạc bầu trời.",
+
+"Nó đánh thẳng xuống ngọn núi phía sau làng.",
+
+"Cả ngọn núi rung chuyển.",
+
+"Lâm Phàm nhìn thấy cảnh đó.",
+
+"Hắn do dự một lúc...",
+
+"Nhưng cuối cùng vẫn quyết định lên núi xem thử.",
+
+"🌲 Khu rừng ban đêm yên tĩnh đến đáng sợ.",
+
+"Gió thổi qua những tán cây.",
+
+"Tạo ra âm thanh rợn người.",
+
+"Lâm Phàm bước từng bước cẩn thận.",
+
+"Cuối cùng hắn cũng tới nơi tia sét đánh xuống.",
+
+"Trước mắt hắn là một cái hố lớn.",
+
+"Khói vẫn còn bốc lên.",
+
+"Trong đống đá vụn...",
+
+"Một vật gì đó đang phát sáng.",
+
+"Lâm Phàm tiến lại gần.",
+
+"Đó là một **chiếc nhẫn cổ xưa**.",
+
+"Trên bề mặt khắc đầy phù văn kỳ lạ.",
+
+"Hắn đưa tay nhặt lên.",
+
+"Ngay khi chạm vào chiếc nhẫn...",
+
+"💥 Một luồng ký ức tràn vào đầu hắn.",
+
+"Lâm Phàm đau đớn quỳ xuống đất.",
+
+"Đầu hắn như muốn nổ tung.",
+
+"Đột nhiên...",
+
+"👤 Một giọng nói già nua vang lên trong đầu hắn.",
+
+"'Thiếu niên... cuối cùng cũng có người tìm thấy ta.'",
+
+"Lâm Phàm hoảng hốt.",
+
+"'Ngươi là ai?!'",
+
+"👤 'Ta là tàn hồn của một tu sĩ thượng cổ.'",
+
+"'Ta đã ngủ say trong chiếc nhẫn này hàng ngàn năm.'",
+
+"'Và hôm nay... ngươi đã đánh thức ta.'",
+
+"Lâm Phàm run run hỏi:",
+
+"'Ngươi... muốn gì ở ta?'",
+
+"👤 Giọng nói khẽ cười.",
+
+"'Ta không muốn gì cả.'",
+
+"'Ta chỉ muốn tìm một người kế thừa.'",
+
+"'Nếu ngươi đồng ý...'",
+
+"'Ta có thể dạy ngươi **tu tiên**.'",
+
+"Lâm Phàm chết lặng.",
+
+"Tu tiên...",
+
+"Thứ mà hắn luôn mơ ước.",
+
+"Nhưng chưa từng dám nghĩ tới.",
+
+"'Ta... thật sự có thể tu luyện sao?'",
+
+"👤 Tàn hồn nói:",
+
+"'Thiên phú của ngươi rất kém.'",
+
+"'Nhưng ý chí của ngươi...'",
+
+"'Lại mạnh hơn rất nhiều thiên tài.'",
+
+"'Chỉ cần ngươi không bỏ cuộc...'",
+
+"'Ta có thể giúp ngươi bước lên con đường cường giả.'",
+
+"Gió đêm thổi qua khu rừng.",
+
+"Lâm Phàm siết chặt chiếc nhẫn.",
+
+"Ánh mắt hắn dần trở nên kiên định.",
+
+"'Được...'",
+
+"'Ta đồng ý!'",
+
+"👤 Tàn hồn cười lớn.",
+
+"'Tốt! Rất tốt!'",
+
+"'Từ hôm nay...'",
+
+"'Ta sẽ dạy ngươi **tu tiên**.'",
+
+"🌠 Khoảnh khắc đó...",
+
+"Số phận của Lâm Phàm bắt đầu thay đổi.",
+
+"Và một truyền kỳ mới...",
+
+"Đang dần được viết nên."
+
+];
+
+let delay = 0;
+
+for (const line of story) {
+  setTimeout(() => {
+    message.channel.send(line);
+  }, delay);
+  delay += 2000;
+}
+
+}
     
     /* ===== !ship ===== */
 if (cmd === "ship") {
