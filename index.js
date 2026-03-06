@@ -355,10 +355,6 @@ const commands = [
     description: "Thông tin về bot"
   },
   {
-    name:"vote",
-    description:"Tạo vote mới"
-  },
-  {
     name: "votedeptrai",
     description: "Vote độ đẹp trai của một người",
     options:[
