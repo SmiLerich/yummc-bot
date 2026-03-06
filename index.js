@@ -544,6 +544,49 @@ if (cmd === "ship") {
 
   return message.channel.send({ embeds: [embed] });
 }
+
+
+if(cmd === "iq") {
+
+const user = message.mentions.users.first() || message.author
+const iq = Math.floor(Math.random() * 201)
+
+let status = ""
+
+if(iq < 40) status = "🐒 Khỉ còn thông minh hơn."
+else if(iq < 80) status = "🙂 IQ hơi thấp nha."
+else if(iq < 120) status = "🧠 Bình thường."
+else if(iq < 160) status = "🤓 Rất thông minh."
+else status = "👑 Thiên tài server."
+
+const embed = {
+color: 0x00ffff,
+title: "🧠 Máy đo IQ siêu cấp",
+description: `Đang quét não của **${user.username}**...`,
+footer: { text: "Hệ thống đo IQ YUMMC" }
+}
+
+let msg = await message.channel.send({ embeds:[embed] })
+
+setTimeout(() => {
+
+msg.edit({
+embeds:[{
+color: 0x00ff99,
+title: "🧠 Kết quả IQ",
+description:
+`👤 Người kiểm tra: ${user}
+
+🧠 IQ: **${iq}**
+
+${status}`,
+footer:{ text:"Máy đo IQ hoạt động 99.9% chính xác" }
+}]
+})
+
+},2000)
+
+}
     
     /* ===== !rank ===== */
 if (cmd === "rank") {
