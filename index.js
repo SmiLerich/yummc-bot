@@ -2060,7 +2060,7 @@ collector.stop()
 }
     
 
-    /* ===== /gui - KIỂM TRA ROLE ===== */
+    /* ===== /gui - KIỂM TRA ROLE ==== */
     if (interaction.commandName === "gui") {
       // 🔐 KIỂM TRA QUYỀN THEO ROLE
       if (!hasGuiPermission(interaction.member)) {
