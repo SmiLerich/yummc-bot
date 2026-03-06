@@ -560,7 +560,6 @@ if (cmd === "ship") {
   return message.channel.send({ embeds: [embed] });
 }
 
-/* ===== kết hôn ==== */
 /* ===== kết hôn ===== */
 if (cmd === "kethon") {
     let user = message.mentions.users.first();
