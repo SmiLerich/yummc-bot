@@ -395,10 +395,11 @@ client.on("messageCreate", async message => {
     ];
 
     const randomReply = replies[Math.floor(Math.random() * replies.length)];
-
-    message.reply(randomReply);
+     // random 40% để bot đỡ spam
+    if (Math.random() < 0.4) {
+        message.reply(randomReply);
     }
-    
+}
 /* ====== abc =====*/
   
   if (message.content.startsWith(PREFIX)) {
