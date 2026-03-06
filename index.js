@@ -500,7 +500,7 @@ const story = [
 "🏡 Nhưng tại một ngôi làng nhỏ hẻo lánh...",
 "Mọi thứ lại hoàn toàn khác.",
 
-"Có một thiếu niên tên **Lâm Phàm**.",
+"Có một thiếu niên tên **haajun**.",
 
 "Từ nhỏ hắn đã bị gọi là phế vật.",
 "Không thể cảm nhận linh khí.",
@@ -509,7 +509,7 @@ const story = [
 "Trong thế giới này...",
 "Điều đó gần như đồng nghĩa với việc cả đời làm phàm nhân.",
 
-"Nhưng Lâm Phàm không cam tâm.",
+"Nhưng Haajun không cam tâm.",
 
 "Mỗi ngày hắn đều lên núi.",
 "Luyện kiếm.",
@@ -528,7 +528,7 @@ const story = [
 
 "Cả ngọn núi rung chuyển.",
 
-"Lâm Phàm nhìn thấy cảnh đó.",
+"Haajun nhìn thấy cảnh đó.",
 
 "Hắn do dự một lúc...",
 
@@ -540,7 +540,7 @@ const story = [
 
 "Tạo ra âm thanh rợn người.",
 
-"Lâm Phàm bước từng bước cẩn thận.",
+"Haajun bước từng bước cẩn thận.",
 
 "Cuối cùng hắn cũng tới nơi tia sét đánh xuống.",
 
@@ -552,7 +552,7 @@ const story = [
 
 "Một vật gì đó đang phát sáng.",
 
-"Lâm Phàm tiến lại gần.",
+"Haajun tiến lại gần.",
 
 "Đó là một **chiếc nhẫn cổ xưa**.",
 
@@ -564,7 +564,7 @@ const story = [
 
 "💥 Một luồng ký ức tràn vào đầu hắn.",
 
-"Lâm Phàm đau đớn quỳ xuống đất.",
+"Haajun đau đớn quỳ xuống đất.",
 
 "Đầu hắn như muốn nổ tung.",
 
@@ -574,17 +574,17 @@ const story = [
 
 "'Thiếu niên... cuối cùng cũng có người tìm thấy ta.'",
 
-"Lâm Phàm hoảng hốt.",
+"Haajun hoảng hốt.",
 
 "'Ngươi là ai?!'",
 
-"👤 'Ta là tàn hồn của một tu sĩ thượng cổ.'",
+"👤 'Ta là tàn hồn của một tu sĩ thượng cổ Lương Văn Bằng.'",
 
 "'Ta đã ngủ say trong chiếc nhẫn này hàng ngàn năm.'",
 
 "'Và hôm nay... ngươi đã đánh thức ta.'",
 
-"Lâm Phàm run run hỏi:",
+"Haajun run run hỏi:",
 
 "'Ngươi... muốn gì ở ta?'",
 
@@ -598,7 +598,7 @@ const story = [
 
 "'Ta có thể dạy ngươi **tu tiên**.'",
 
-"Lâm Phàm chết lặng.",
+"Haajun chết lặng.",
 
 "Tu tiên...",
 
@@ -618,11 +618,11 @@ const story = [
 
 "'Chỉ cần ngươi không bỏ cuộc...'",
 
-"'Ta có thể giúp ngươi bước lên con đường cường giả.'",
+"'Ta Lương Văn Bằng có thể giúp ngươi bước lên con đường cường giả.'",
 
 "Gió đêm thổi qua khu rừng.",
 
-"Lâm Phàm siết chặt chiếc nhẫn.",
+"Haajun siết chặt chiếc nhẫn.",
 
 "Ánh mắt hắn dần trở nên kiên định.",
 
@@ -640,7 +640,7 @@ const story = [
 
 "🌠 Khoảnh khắc đó...",
 
-"Số phận của Lâm Phàm bắt đầu thay đổi.",
+"Số phận của Haajun bắt đầu thay đổi.",
 
 "Và một truyền kỳ mới...",
 
