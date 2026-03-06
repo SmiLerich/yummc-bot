@@ -387,7 +387,7 @@ client.on("messageCreate", async message => {
 
     message.reply(randomReply);
     }
-}
+    
 /* ====== abc =====*/
   
   if (message.content.startsWith(PREFIX)) {
