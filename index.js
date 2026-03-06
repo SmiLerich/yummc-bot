@@ -1499,47 +1499,7 @@ process.on('unhandledRejection', error => {
 });
 
 /* ===== kết hôn =====*/
-setInterval(()=>{
 
-for(let id in couples){
-
-let data = couples[id]
-
-if(id < data.partner){
-
-let days = Math.floor((Date.now() - data.since) / (1000*60*60*24))
-
-if(days % 10 === 0 && days !== 0 && data.lastAnnounce !== days){
-
-let channel = client.channels.cache.get("1452970086515343381")
-
-if(channel){
-
-channel.send(
-`🎉 **KỶ NIỆM TÌNH YÊU**
-
-<@${id}> ❤️ <@${data.partner}>
-
-Hai bạn đã yêu nhau **${days} ngày**!
-
-Chúc hai bạn luôn hạnh phúc 💕`
-)
-
-}
-
-data.lastAnnounce = days
-couples[id].lastAnnounce = days
-couples[data.partner].lastAnnounce = days
-
-saveCouples()
-
-}
-
-}
-
-}
-
-}, 3600000)
 
 /* ================= LOGIN ================= */
 client.login(process.env.TOKEN).catch(error => {
