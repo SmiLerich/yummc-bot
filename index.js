@@ -383,6 +383,7 @@ client.on("messageCreate", async message => {
     "info",
     "ip",
     "ship",
+    "kethon",
     "code",
     "gui"
     ];
@@ -560,47 +561,68 @@ if (cmd === "ship") {
 }
 
 /* ===== kết hôn ==== */
-/* ===== kết hôn ==== */
-if(cmd === "kethon"){
+/* ===== kết hôn ===== */
+if (cmd === "kethon") {
+    let user = message.mentions.users.first();
 
-let user = message.mentions.users.first()
+    if (!user) {
+        return message.reply("Hãy tag người bạn muốn kết hôn 💍");
+    }
 
-if(!user)
-return message.reply("Hãy tag người bạn muốn kết hôn 💍")
+    if (user.id === message.author.id) {
+        return message.reply("Bạn không thể cưới chính mình 🤨");
+    }
 
-if(user.id === message.author.id)
-return message.reply("Bạn không thể cưới chính mình 🤨")
+    // Kiểm tra xem người dùng đã kết hôn chưa
+    Couple.findOne({
+        $or: [
+            { user1: message.author.id },
+            { user2: message.author.id }
+        ]
+    }).then(exists => {
+        if (exists) {
+            return message.reply("Bạn đã kết hôn rồi!");
+        }
 
-let exists = await Couple.findOne({
-$or:[
-{user1: message.author.id},
-{user2: message.author.id}
-]
-})
+        // Kiểm tra người kia đã kết hôn chưa
+        Couple.findOne({
+            $or: [
+                { user1: user.id },
+                { user2: user.id }
+            ]
+        }).then(partnerExists => {
+            if (partnerExists) {
+                return message.reply("Người này đã kết hôn với người khác rồi!");
+            }
 
-if(exists)
-return message.reply("Bạn đã kết hôn rồi!")
+            // Tạo cặp đôi mới
+            let now = Date.now();
+            let couple = new Couple({
+                user1: message.author.id,
+                user2: user.id,
+                since: now,
+                lastAnnounce: 0
+            });
 
-let now = Date.now()
-
-let couple = new Couple({
-user1: message.author.id,
-user2: user.id,
-since: now,
-lastAnnounce: 0
-})
-
-await couple.save()
-
-message.channel.send(
-`💒 **THÔNG BÁO LỄ KẾT HÔN**
-
-💍 **${message.author.username}** và **${user.username}**
-đã chính thức nên duyên vợ chồng ❤️
-
-${message.author} ❤️ ${user}`
-)
-
+            couple.save().then(() => {
+                message.channel.send(
+                    `💒 **THÔNG BÁO LỄ KẾT HÔN**\n\n` +
+                    `💍 **${message.author.username}** và **${user.username}**\n` +
+                    `đã chính thức nên duyên vợ chồng ❤️\n\n` +
+                    `${message.author} ❤️ ${user}`
+                );
+            }).catch(err => {
+                console.error("Lỗi khi lưu kết hôn:", err);
+                message.reply("❌ Có lỗi xảy ra khi kết hôn!");
+            });
+        }).catch(err => {
+            console.error("Lỗi khi kiểm tra partner:", err);
+            message.reply("❌ Có lỗi xảy ra!");
+        });
+    }).catch(err => {
+        console.error("Lỗi khi kiểm tra user:", err);
+        message.reply("❌ Có lỗi xảy ra!");
+    });
 }
 
 /* ====== ly hôn ==== */
