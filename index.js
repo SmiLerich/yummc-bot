@@ -363,6 +363,7 @@ client.on("messageCreate", async message => {
     "ping",
     "info",
     "ip",
+    "ship",
     "code",
     "gui"
     ];
@@ -469,6 +470,72 @@ if (cmd === "authme") {
     );
 
   message.channel.send({ embeds: [authEmbed] });
+}
+    
+    /* ===== !ship ===== */
+if (cmd === "ship") {
+
+  const user1 = message.mentions.users.first();
+  const user2 = message.mentions.users.last();
+
+  if (!user1 || !user2) {
+    return message.reply("❌ Hãy tag 2 người để ghép đôi!\nVí dụ: `ship @A @B`");
+  }
+
+  const percent = Math.floor(Math.random() * 101);
+
+  function bar(p) {
+    const total = 10;
+    const filled = Math.round(p / 10);
+    return "█".repeat(filled) + "░".repeat(total - filled);
+  }
+
+  let msg = "";
+  let heart = "💔";
+
+  if (percent <= 10) {
+    msg = "💀 Toang rồi, tránh xa nhau ra!";
+    heart = "💀";
+  } 
+  else if (percent <= 30) {
+    msg = "💔 Không hợp chút nào!";
+    heart = "💔";
+  } 
+  else if (percent <= 50) {
+    msg = "😅 Cũng tạm thôi...";
+    heart = "🧡";
+  } 
+  else if (percent <= 70) {
+    msg = "🙂 Có hi vọng đó!";
+    heart = "❤️";
+  } 
+  else if (percent <= 90) {
+    msg = "💖 Khá hợp luôn!";
+    heart = "💖";
+  } 
+  else {
+    msg = "💍 Trời sinh một cặp!";
+    heart = "💞";
+  }
+
+  const embed = new EmbedBuilder()
+    .setColor("#ff66cc")
+    .setTitle("💘 Máy Ghép Đôi Tình Yêu")
+    .setDescription(
+`${user1} ${heart} ${user2}
+
+📊 Tỉ lệ yêu nhau: **${percent}%**
+
+\`${bar(percent)}\`
+
+💬 ${msg}`
+    )
+    .setThumbnail(user1.displayAvatarURL({ dynamic: true }))
+    .setImage(user2.displayAvatarURL({ dynamic: true }))
+    .setFooter({ text: "YumMC Love Machine ❤️" })
+    .setTimestamp();
+
+  return message.channel.send({ embeds: [embed] });
 }
     
     /* ===== !rank ===== */
