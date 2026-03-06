@@ -370,6 +370,9 @@ client.on("messageCreate", async message => {
     "ship",
     "kethon",
     "code",
+    "iq",
+    "gay",
+    "hack",
     "gui"
     ];
 
@@ -545,7 +548,7 @@ if (cmd === "ship") {
   return message.channel.send({ embeds: [embed] });
 }
 
-
+/* ===== test iq ==== */
 if(cmd === "iq") {
 
 const user = message.mentions.users.first() || message.author
@@ -585,6 +588,95 @@ footer:{ text:"Máy đo IQ hoạt động 99.9% chính xác" }
 })
 
 },2000)
+
+}
+
+/* ====== test gay === */
+if(cmd === "gay") {
+
+const user = message.mentions.users.first() || message.author
+const percent = Math.floor(Math.random() * 101)
+
+let comment = ""
+
+if(percent < 20) comment = "😎 Thẳng như cột điện."
+else if(percent < 50) comment = "🙂 Có dấu hiệu nhẹ."
+else if(percent < 80) comment = "🌈 Bắt đầu lộ rồi."
+else comment = "💅 Chúa tể LGBT."
+
+const embed = {
+color: 0xff00aa,
+title: "🌈 Máy đo Gay Server",
+description:`Đang phân tích giới tính của **${user.username}**...`
+}
+
+let msg = await message.channel.send({embeds:[embed]})
+
+setTimeout(()=>{
+
+msg.edit({
+embeds:[{
+color:0xff00aa,
+title:"🌈 Kết quả kiểm tra",
+description:`
+👤 Người kiểm tra: ${user}
+
+🌈 Gay: **${percent}%**
+
+${comment}
+`
+}]
+})
+
+},2000)
+
+}
+
+
+/* ===== test hack ==== */
+if(cmd === "hack"){
+
+let user = message.mentions.users.first()
+
+if(!user)
+return message.reply("Tag người cần hack 😈")
+
+let msg = await message.channel.send("💻 Đang kết nối máy chủ hack...")
+
+setTimeout(()=>{
+msg.edit("💻 Đang lấy dữ liệu Discord...")
+},2000)
+
+setTimeout(()=>{
+msg.edit("📂 Đang truy cập tin nhắn riêng...")
+},4000)
+
+setTimeout(()=>{
+msg.edit("🔑 Đang crack mật khẩu...")
+},6000)
+
+setTimeout(()=>{
+
+let password = Math.random().toString(36).slice(-8)
+
+msg.edit({
+embeds:[{
+color:0xff0000,
+title:"💀 Hack thành công",
+description:`
+👤 Target: ${user}
+
+📧 Email: ${user.username}@gmail.com
+🔑 Password: **${password}**
+
+📂 Đã tải về 69GB dữ liệu
+
+😈 Đùa thôi! Đây là troll.
+`
+}]
+})
+
+},8000)
 
 }
     
