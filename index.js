@@ -723,25 +723,66 @@ client.on("messageCreate", async message => {
     
 
 /* ====== !money ==== */
+/* ===== !kethon ===== */
+if (cmd === "kethon") {
 
-if(cmd === "money"){
+const user = message.mentions.users.first();
 
-const user = db.getUser(message.author.id)
+if (!user) {
+return message.reply("❌ Bạn phải tag người muốn kết hôn");
+}
 
-message.reply(`💰 Bạn có ${user.money} coins`)
+if (user.id === message.author.id) {
+return message.reply("❌ Không thể tự cưới mình");
+}
+
+const married = db.getMarriage(message.author.id);
+
+if (married) {
+return message.reply("❌ Bạn đã kết hôn rồi");
+}
+
+db.marry(message.author.id, user.id);
+
+const embed = new EmbedBuilder()
+.setColor("#ff6699")
+.setTitle("💍 KẾT HÔN THÀNH CÔNG")
+.setDescription(`💑 ${message.author} đã kết hôn với ${user}`)
+.setTimestamp();
+
+message.channel.send({ embeds: [embed] });
 
 }
 
+    /* ===== !vochong ===== */
+if (cmd === "vochong") {
 
+const partner = db.getMarriage(message.author.id);
 
-if(cmd === "daily"){
+if (!partner) {
+return message.reply("💔 Bạn chưa kết hôn");
+}
 
-db.addMoney(message.author.id,100)
+const user = await client.users.fetch(partner);
 
-message.reply("🎁 Bạn nhận được 100 coins!")
+message.reply(`❤️ Bạn đang kết hôn với **${user.username}**`);
 
 }
 
+    /* ===== !lyhon ===== */
+if (cmd === "lyhon") {
+
+const partner = db.getMarriage(message.author.id);
+
+if (!partner) {
+return message.reply("❌ Bạn chưa kết hôn");
+}
+
+db.divorce(message.author.id);
+
+message.channel.send(`💔 ${message.author} đã ly hôn`);
+
+}
     
    /* ====== !authme ==== */
 if (cmd === "authme") {
@@ -2247,6 +2288,7 @@ client.login(process.env.TOKEN).catch(error => {
   process.exit(1);
 
 });
+
 
 
 
