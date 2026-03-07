@@ -17,6 +17,7 @@ const {
   Partials,
   PermissionsBitField
 } = require("discord.js");
+const db = require("./database")
 /* ======= kết hôn ==== */
 
 /* ======= adn */
@@ -720,6 +721,27 @@ client.on("messageCreate", async message => {
       return message.channel.send({ embeds: [embed] });
     }
     
+
+/* ====== !money ==== */
+
+if(cmd === "money"){
+
+const user = db.getUser(message.author.id)
+
+message.reply(`💰 Bạn có ${user.money} coins`)
+
+}
+
+
+
+if(cmd === "daily"){
+
+db.addMoney(message.author.id,100)
+
+message.reply("🎁 Bạn nhận được 100 coins!")
+
+}
+
     
    /* ====== !authme ==== */
 if (cmd === "authme") {
