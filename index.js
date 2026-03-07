@@ -17,7 +17,7 @@ const {
   Partials,
   PermissionsBitField
 } = require("discord.js");
-const db = require("./database")
+const db = require("./database");
 /* ======= kết hôn ==== */
 
 /* ======= adn */
@@ -2247,6 +2247,7 @@ client.login(process.env.TOKEN).catch(error => {
   process.exit(1);
 
 });
+
 
 
 
